@@ -63,7 +63,21 @@ public class ViewMenu extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e){
 
-        
+        Object source = e.getSource();
+
+        if(source == btn1){
+            System.out.println("Bouton 1");
+        } else if (source == btn2){
+            System.out.println("Bouton 2");
+        } else if(source == btn3){
+            System.out.println("Bouton 3");
+        } else if(source == btn4){
+            System.out.println("Bouton 4");
+        } else if(source == btn5){
+            System.out.println("Bouton 5");
+        } else {
+            System.out.println("Bouton 6");
+        }
         
     } 
     

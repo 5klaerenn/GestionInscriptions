@@ -2,36 +2,36 @@ package org.sklaerenn.model;
 
 public class Note {
 
-    private int etudiantId;
-    private int coursId;
+    private String etudiantId;
+    private String coursId;
     private int note1;
     private int note2;
 
-    public Note(int etudiantId, int coursId) {
+    public Note(String etudiantId, String coursId) {
         this.etudiantId = etudiantId;
         this.coursId = coursId;
     }
 
-    public Note(int etudiantId, int coursId, int note1, int note2) {
+    public Note(String etudiantId, String coursId, int note1, int note2) {
         this.etudiantId = etudiantId;
         this.coursId = coursId;
         this.note1 = note1;
         this.note2 = note2;
     }
 
-    public int getEtudiantId() {
+    public String getEtudiantId() {
         return etudiantId;
     }
 
-    public void setEtudiantId(int etudiantId) {
+    public void setEtudiantId(String etudiantId) {
         this.etudiantId = etudiantId;
     }
 
-    public int getCoursId() {
+    public String getCoursId() {
         return coursId;
     }
 
-    public void setCoursId(int coursId) {
+    public void setCoursId(String coursId) {
         this.coursId = coursId;
     }
 

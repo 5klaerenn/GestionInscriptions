@@ -7,9 +7,9 @@ import java.util.List;
 public interface NotesDao {
 
     void create(Note n) throws SQLException;
-    Note findById(int etudantId, int coursId) throws SQLException;
+    Note findById(String etudantId, String coursId) throws SQLException;
     List<Note> findAll() throws SQLException;
     void update(Note n) throws SQLException;
-    void delete(int etudantId, int coursId) throws SQLException;
+    void delete(String etudantId, String coursId) throws SQLException;
 
 }

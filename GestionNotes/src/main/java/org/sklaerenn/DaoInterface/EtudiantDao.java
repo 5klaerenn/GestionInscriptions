@@ -8,9 +8,9 @@ import java.util.List;
 public interface EtudiantDao {
 
     void create(Etudiant e) throws SQLException;
-    Etudiant findById(int etudantId) throws SQLException;
+    Etudiant findById(String etudantId) throws SQLException;
     List<Etudiant> findAll() throws SQLException;
     void update(Etudiant e) throws SQLException;
-    void delete(int etudantId) throws SQLException;
+    void delete(String etudantId) throws SQLException;
 
 }

@@ -2,21 +2,21 @@ package org.sklaerenn.model;
 
 public class Etudiant {
 
-    private int etudiantId;
+    private String etudiantId;
     private String nom;
     private String prenom;
 
-    public Etudiant(int etudiantId, String nom, String prenom) {
-        this.etudiantId = etudiantId;
+    public Etudiant(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+        this.etudiantId = nom.substring(0, 3) + prenom.charAt(0);
     }
 
-    public int getEtudiantId() {
+    public String getEtudiantId() {
         return etudiantId;
     }
 
-    public void setEtudiantId(int etudiantId) {
+    public void setEtudiantId(String etudiantId) {
         this.etudiantId = etudiantId;
     }
 

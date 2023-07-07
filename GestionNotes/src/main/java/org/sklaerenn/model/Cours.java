@@ -2,19 +2,19 @@ package org.sklaerenn.model;
 
 public class Cours {
 
-    private int coursId;
+    private String coursId;
     private String nomCours;
 
-    public Cours(int coursId, String nomCours) {
+    public Cours(String coursId, String nomCours) {
         this.coursId = coursId;
         this.nomCours = nomCours;
     }
 
-    public int getCoursId() {
+    public String getCoursId() {
         return coursId;
     }
 
-    public void setCoursId(int coursId) {
+    public void setCoursId(String coursId) {
         this.coursId = coursId;
     }
 

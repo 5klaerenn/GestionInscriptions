@@ -14,8 +14,18 @@ public class DaoDemo {
         CoursDao coursDao = new CoursDaoImpl();
         EtudiantDao etuDao = new EtudiantDaoImpl();
 
-        Etudiant e1 = new Etudiant("Snorkel", "Bob");
-        etuDao.create(e1);
+//        Etudiant e1 = new Etudiant("Kelso", "Bob");
+//        Etudiant e2 = new Etudiant("Cox", "Perry");
+//        Etudiant e3 = new Etudiant("Dorian", "John");
+//        Etudiant e4 = new Etudiant("Turkelton", "Turk");
+//        Etudiant e5 = new Etudiant("Reid", "Eliott");
+//        etuDao.create(e1);
+//        etuDao.create(e2);
+//        etuDao.create(e3);
+//        etuDao.create(e4);
+//        etuDao.create(e5);
+//
+
 
 
 

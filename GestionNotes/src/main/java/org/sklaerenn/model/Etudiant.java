@@ -6,10 +6,11 @@ public class Etudiant {
     private String nom;
     private String prenom;
 
+    //Constructeur à 2 paramètres pour création automatique du ID de l'étudiant
     public Etudiant(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
-        this.etudiantId = nom.substring(0, 3) + prenom.charAt(0);
+        this.etudiantId = nom.substring(0, 3).toUpperCase() + prenom.charAt(0);
     }
 
     public String getEtudiantId() {
@@ -38,10 +39,8 @@ public class Etudiant {
 
     @Override
     public String toString() {
-        return "Etudiant{" +
-                "etudiantId=" + etudiantId +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                '}';
+        return  etudiantId +
+                " - " + prenom +
+                " " + nom;
     }
 }

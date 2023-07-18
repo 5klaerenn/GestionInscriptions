@@ -6,7 +6,7 @@ public class Cours {
     private String nomCours;
 
     public Cours(String coursId, String nomCours) {
-        this.coursId = coursId;
+        this.coursId = coursId.toUpperCase();
         this.nomCours = nomCours;
     }
 

@@ -2,22 +2,21 @@ package org.sklaerenn.model;
 
 public class Etudiant {
 
-    private String etudiantId;
+    private int etudiantId;
     private String nom;
     private String prenom;
 
-    //Constructeur à 2 paramètres pour création automatique du ID de l'étudiant
-    public Etudiant(String nom, String prenom) {
+    public Etudiant(int id, String nom, String prenom) {
+    	this.etudiantId = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.etudiantId = nom.substring(0, 3).toUpperCase() + prenom.charAt(0);
     }
 
-    public String getEtudiantId() {
+    public int getEtudiantId() {
         return etudiantId;
     }
 
-    public void setEtudiantId(String etudiantId) {
+    public void setEtudiantId(int etudiantId) {
         this.etudiantId = etudiantId;
     }
 

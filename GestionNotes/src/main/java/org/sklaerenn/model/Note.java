@@ -2,28 +2,28 @@ package org.sklaerenn.model;
 
 public class Note {
 
-    private String etudiantId;
+    private int etudiantId;
     private String coursId;
     private int note1;
     private int note2;
 
-    public Note(String etudiantId, String coursId) {
+    public Note(int etudiantId, String coursId) {
         this.etudiantId = etudiantId;
-        this.coursId = coursId;
+        this.coursId = coursId.toUpperCase();
     }
 
-    public Note(String etudiantId, String coursId, int note1, int note2) {
+    public Note(int etudiantId, String coursId, int note1, int note2) {
         this.etudiantId = etudiantId;
-        this.coursId = coursId;
+        this.coursId = coursId.toUpperCase();
         this.note1 = note1;
         this.note2 = note2;
     }
 
-    public String getEtudiantId() {
+    public int getEtudiantId() {
         return etudiantId;
     }
 
-    public void setEtudiantId(String etudiantId) {
+    public void setEtudiantId(int etudiantId) {
         this.etudiantId = etudiantId;
     }
 
@@ -53,12 +53,10 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Notes{" +
-                "etudiantId=" + etudiantId +
-                ", coursId=" + coursId +
-                ", note1=" + note1 +
-                ", note2=" + note2 +
-                '}';
+        return "\n Étudiant " + etudiantId +
+                "  - Cours " + coursId +
+                " - note 1 : " + note1 +
+                ", note 2 : " + note2;
     }
 }
 

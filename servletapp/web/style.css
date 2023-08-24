@@ -1,0 +1,48 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 août 2023, 13 h 34 min 56 s
+    Author     : Sklaerenn
+*/
+
+body {
+    display: flex;
+
+    background: #F1F0E8;
+    height: 1vh;
+}
+
+#navbar{
+    border-color: pink;
+    border-style: solid;
+    height: 800px;
+    background: #ADC4CE;
+}
+
+#corps{
+    border-color: yellow;
+    border-style: solid;
+    height: 800px;
+}
+
+form.form-example {
+  display: table;
+}
+
+div.form-example {
+  display: table-row;
+}
+
+label,
+input {
+  display: table-cell;
+  margin-bottom: 10px;
+}
+
+label {
+  padding-right: 10px;
+}
+
+

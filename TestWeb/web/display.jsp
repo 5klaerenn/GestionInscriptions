@@ -23,5 +23,12 @@
             <input type="hidden" name="action" value="join">
             <input type="submit" value="Return">
         </form>
+        
+        <p>Pour revnir a la liste des tous les etudiants :</p>
+        <form action="listeEtudiants" method="get">
+            <input type="hidden" name="action" value="join">
+            <input type="submit" value="Return">
+        </form>
+                
     </body>
 </html>

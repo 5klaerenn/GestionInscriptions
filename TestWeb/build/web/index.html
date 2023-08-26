@@ -15,12 +15,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         
         <p>To join our email list, enter your name and email adress below.</p>
         
-        <form action="display" method="post">
-            <input type="hidden" name="action" value="display.jsp">
-            
-            <label>Email:</label>
-            <input type="text" name="email" required><br>
-            
+        <form action="student" method="post">
+            <input type="hidden" name="action" value="add">
+                 
             <label>First Name:</label>
             <input type="text" name="firstName" required><br>
 
@@ -28,7 +25,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <input type="text" name="lastName" required><br>
             
             <label>&nbsp;</label>
-            <input type ="submit" value="Join Nom" id="submit">
+            <input type ="submit" value="Ajouter" id="submit">
         </form>
         
     </body>

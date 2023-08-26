@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sklaerenn
  */
-@WebServlet(name = "coursController", urlPatterns = {"/cours"})
+@WebServlet(name = "coursController", urlPatterns = {"/student"})
 public class TestServlet extends HttpServlet {
 
     /**

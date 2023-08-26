@@ -13,7 +13,7 @@
     </head>
     <body>
         
-        <h1>Hello ${person.name} ${pers.name}</h1>
+        <h1>Hello ${param.name} ${param.name}</h1>
 
     </body>
 </html>

@@ -35,51 +35,55 @@ public class PersonDAOImplementation implements PersonDao{
         PreparedStatement preparedStatement;
 
         try {
-            String createQuery = "INSERT INTO PERSON(id, name) VALUES(?,?)";
-            preparedStatement = connection.prepareStatement(createQuery);
-            
-            preparedStatement.setString(1, person.getId());
-            preparedStatement.setString(2, person.getName());
-            
+            String createQuery = "INSERT INTO PERSON(first_name, last_name) VALUES(?, ?)";
+            preparedStatement = connection.prepareStatement(createQuery, new String[]{"id"});
+
+            preparedStatement.setString(1, person.getFirstName());
+            preparedStatement.setString(2, person.getLastName());
+
             preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int generatedId = generatedKeys.getInt(1);
+                person.setId(generatedId);  // Set the generated ID in the Person object
+            }
+
             preparedStatement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
+        
         }
     }
-
-    // Find by id
+        
     @Override
-    public Person findById(String id) {
-
+    public Person findById(int id) {
+        
         Person person = null;
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
 
-        try {
-            String selectIdQuery = "SELECT * FROM person where id = ?";
-            preparedStatement = connection.prepareStatement(selectIdQuery);
-            preparedStatement.setString(1, id);
-            resultSet = preparedStatement.executeQuery();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+    try {
+        String selectIdQuery = "SELECT * FROM person WHERE id = ?";
+        preparedStatement = connection.prepareStatement(selectIdQuery);
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
 
-        try {
-            resultSet.next();
+        if (resultSet.next()) {
             person = new Person();
-            person.setId(resultSet.getString("id"));
-            person.setName(resultSet.getString("name"));
-            resultSet.close();
+            person.setId(resultSet.getInt("id"));
+            person.setFirstName(resultSet.getString("first_name"));
+            person.setLastName(resultSet.getString("last_name"));
+        }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return person;
     }
-
-    // find All people
-    public List<Person> findAll() {
+    
+    @Override
+     public List<Person> findAll() {
 
         List<Person> persons = new ArrayList<>();
         Person person = null;
@@ -90,12 +94,13 @@ public class PersonDAOImplementation implements PersonDao{
             String selectAllQuery = "SELECT * FROM PERSON ORDER BY ID";
             preparedStatement = connection.prepareStatement(selectAllQuery);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                person = new Person();
-                person.setId(resultSet.getString("id"));
-                person.setName(resultSet.getString("name"));
-                persons.add(person);
-            }
+        while (resultSet.next()) {
+            person = new Person();
+            person.setId(resultSet.getInt("id"));
+            person.setFirstName(resultSet.getString("first_name"));
+            person.setLastName(resultSet.getString("last_name"));
+            persons.add(person);
+        }
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException ex) {
@@ -103,18 +108,19 @@ public class PersonDAOImplementation implements PersonDao{
         }
         return persons;
     }
+    
 
     // Update person's info
     public void update(Person person) {
-
+        
         PreparedStatement preparedStatement;
 
         try {
-            String updateQuery = "UPDATE PERSON SET NAME = ? WHERE ID = ?";
-            //System.out.println("Query = " + updateQuery);
+            String updateQuery = "UPDATE PERSON SET first_name = ?, last_name = ? WHERE id = ?";
             preparedStatement = connection.prepareStatement(updateQuery);
-            preparedStatement.setString(1, person.getName());
-            preparedStatement.setString(2, person.getId());
+            preparedStatement.setString(1, person.getFirstName());
+            preparedStatement.setString(2, person.getLastName());
+            preparedStatement.setInt(3, person.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException ex) {
@@ -123,18 +129,21 @@ public class PersonDAOImplementation implements PersonDao{
     }
 
     // Delete person
-    public void delete(String id) {
+    public void delete(int id) {
 
         PreparedStatement preparedStatement;
 
         try {
-            String deleteQuery = "DELETE FROM PERSON WHERE ID =" + id;
+            String deleteQuery = "DELETE FROM PERSON WHERE ID = ?";
             preparedStatement = connection.prepareStatement(deleteQuery);
+            
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    
+
+
 }

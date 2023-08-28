@@ -12,35 +12,48 @@ package model;
  */
 public class Person {
     
-    private String id;
-    private String name;
+    private int id;
+    private String firstName;
+    private String lastName;
 
     public Person() {
     }
-    
-    public Person(String id, String name){
-        this.id = id;
-        this.name = name;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
     public String toString() {
-        return "Person id=" + id + ", name=" + name;
+        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + '}';
     }
+    
+    
+    
+    
 }

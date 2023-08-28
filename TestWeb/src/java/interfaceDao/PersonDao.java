@@ -23,9 +23,9 @@ public interface PersonDao {
     
     void update(Person p);
     
-    void delete(String id);
+    void delete(int id);
 
     List<Person> findAll();
 
-    Person findById(String id);
+    Person findById(int id);
 }

@@ -1,0 +1,86 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package controllers;
+
+import DaoImp.PersonDAOImplementation;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Person;
+
+/**
+ *
+ * @author Sklaerenn
+ */
+@WebServlet({"/student"})
+public class CoursController extends HttpServlet {
+    
+        PersonDAOImplementation dao;
+    
+    @Override
+    public void init(){
+       dao = new PersonDAOImplementation();
+    }
+    
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String url = "/index.html";
+        
+        //get current action
+        String action = request.getParameter("action");
+        if(action == null){
+            action = "join"; //default action
+        }
+        
+        //perform action and set URSL to appropriate page
+        if(action.equals("join")){
+            url = "/index.html"; //the "join" page
+        } else if (action.equals("add")) {
+            //get parameters from the request
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            
+            //store data in User object and save User object in db
+            Person person = new Person(firstName, lastName);
+            dao.create(person);
+
+            
+            //set User object in request object and set URL
+            request.setAttribute("personnes", person);
+            url = "/display.jsp"; //the "thanks" page
+        }
+        
+        //forward request and response objects to specified URL 
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
+        
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

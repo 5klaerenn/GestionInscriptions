@@ -8,9 +8,9 @@
     </head>
     <body>
         
-        <h1>Merci d'avoir ajouté un nouvel étudiant</h1>
+        <h3>L'étudiant a bien été modifié</h3>
        
-        <p>Voici les informations entrées : </p>
+        <p> </p>
         
         <label>Prénom: </label>
         <span>${personnes.firstName}</span><br>
@@ -24,11 +24,6 @@
             <input type="submit" value="Return">
         </form>
         
-        <p>Pour revnir a la liste des tous les etudiants :</p>
-        <form action="listeEtudiants" method="get">
-            <input type="hidden" name="action" value="join">
-            <input type="submit" value="Return">
-        </form>
                 
     </body>
 </html>

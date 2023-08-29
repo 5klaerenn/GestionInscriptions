@@ -27,7 +27,7 @@
                     <td>${student.firstName}</td>
                     <td>${student.lastName}</td>
                     <td><a href="<c:url value='/updateStudent?id=${student.id}&action=update'/>">Modifier</a></td>
-                    <td><a href="<c:url value='/index?students=${student.id}&action=delete'/>">Supprimer</a></td>
+                    <td><a href="<c:url value='/index?action=delete&id=${student.id}'/>">Supprimer</a></td>
                 </tr>
             </c:forEach>
 

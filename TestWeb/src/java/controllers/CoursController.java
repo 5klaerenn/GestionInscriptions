@@ -33,27 +33,74 @@ public class CoursController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        
+        List<Person> students = dao.findAll();
+        request.setAttribute("students", students);
+        
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
+    
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = "/index.html";
         
+        String action = request.getParameter("action");
+
+        if (action != null) {
+            switch (action) {
+                case "add":
+                    String firstName = request.getParameter("firstName");
+                    String lastName = request.getParameter("lastName");
+                    
+                    Person newPerson = new Person(firstName, lastName);
+                    dao.create(newPerson);
+                    break;
+                case "update":
+                    
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String upfirstName = request.getParameter("firstName");
+                    String uplastName = request.getParameter("lastName");
+
+                    Person personToUpdate = new Person();
+                    personToUpdate.setId(id);
+                    personToUpdate.setFirstName(upfirstName);
+                    personToUpdate.setLastName(uplastName);
+
+                    dao.update(personToUpdate);
+
+                    // Redirect to updateStudent.jsp for editing student details
+                    response.sendRedirect("updateStudent?id=" + id);
+                    return;
+                case "delete":
+                    int deleteId = Integer.parseInt(request.getParameter("id"));
+                    dao.delete(deleteId);
+                    return;
+            }
+        }
+
+        response.sendRedirect(request.getContextPath() + "/student"); // Redirect to doGet
+        
+        
+        
+        
+        
+    
+    /*
+        List<Person> students = dao.findAll();
+        String url = "/index.jsp";
+
         //get current action
         String action = request.getParameter("action");
         if(action == null){
             action = "join"; //default action
         }
-        
-        List<Person> students = dao.findAll();
-        
+
         //perform action and set URSL to appropriate page
-        if(action.equals("join")){
-            url = "/index.html"; //the "join" page
+        if(action.equals("join")){        
+            url = "/index.jsp"; //the "join" page
         } else if (action.equals("add")) {
             //get parameters from the request
             String firstName = request.getParameter("firstName");
@@ -70,8 +117,7 @@ public class CoursController extends HttpServlet {
 
         } else if(action.equals("afficher")) {
             students = dao.findAll();
-            request.setAttribute("students", students);
-            request.getRequestDispatcher("listeEtudiants.jsp").forward(request, response);
+            
         } else if (action.equals("update")) {
             int id = Integer.parseInt(request.getParameter("id"));
             String firstName = request.getParameter("firstName");
@@ -95,14 +141,16 @@ public class CoursController extends HttpServlet {
             return;
         }
         
+        request.setAttribute("students", students);
         
         //forward request and response objects to specified URL 
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
-        
+     */   
     }
-
+     
+        
     /**
      * Returns a short description of the servlet.
      *

@@ -13,9 +13,9 @@
         <p>Voici les informations entrées : </p>
         
         <label>Prénom: </label>
-        <span>${personnes.id}</span><br>
+        <span>${personnes.firstName}</span><br>
         <label>Nom: </label>
-        <span>${personnes.name}</span><br>
+        <span>${personnes.lastName}</span><br>
 
         
         <p>Pour inscrire un nouvel étudiant :</p>

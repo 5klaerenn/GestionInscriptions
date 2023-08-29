@@ -7,6 +7,7 @@ package controllers;
 import DaoImp.PersonDAOImplementation;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +49,8 @@ public class CoursController extends HttpServlet {
             action = "join"; //default action
         }
         
+        List<Person> students = dao.findAll();
+        
         //perform action and set URSL to appropriate page
         if(action.equals("join")){
             url = "/index.html"; //the "join" page
@@ -60,11 +63,35 @@ public class CoursController extends HttpServlet {
             Person person = new Person(firstName, lastName);
             dao.create(person);
 
+            students.add(person);
             
             //set User object in request object and set URL
-            request.setAttribute("personnes", person);
-            url = "/display.jsp"; //the "thanks" page
+            request.setAttribute("students", students);
+            url = "/listeEtudiants.jsp"; //the "thanks" page
+
+        } else if (action.equals("update")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+
+            Person personToUpdate = new Person();
+            personToUpdate.setId(id);
+            personToUpdate.setFirstName(firstName);
+            personToUpdate.setLastName(lastName);
+
+            dao.update(personToUpdate);
+
+            // Redirect to updateStudent.jsp for editing student details
+            response.sendRedirect("updateStudent?id=" + id);
+            
+            url = "/listeEtudiants.jsp"; //the "thanks" page
+           
+        } else if (action.equals("delete")) {
+        
+            int id = Integer.parseInt(request.getParameter("id"));
+            dao.delete(id);
         }
+        
         
         //forward request and response objects to specified URL 
         getServletContext()

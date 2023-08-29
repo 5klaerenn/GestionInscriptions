@@ -5,15 +5,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Accueil</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
     </head>
   <body>
-        <h1>Join our email list</h1>
+      
+        <h1>Etudiants inscrits</h1>
         
-        <p>To join our email list, enter your name and email adress below.</p>
+        <table border="1">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+            </tr>
+            
+            <c:forEach items="${students}" var="student">
+                <tr>
+                    <td>${student.firstName}</td>
+                    <td>${student.lastName}</td>
+                    <td><a href="<c:url value='/EditStudentServlet?id=${student.id}&action=update'/">Modifier</a></td>
+                    <td><a href="<c:url value='/index?students=${student.id}&action=delete'/>">Supprimer</a></td>
+                </tr>
+            </c:forEach>
+
+        </table>
+            
+<!--         <p>Pour inscrire un nouvel étudiant :</p>
+        <form action="" method="get">
+            <input type="hidden" name="action" value="join">
+            <input type="submit" value="Return">
+        </form>-->
+         
+        <h3>Pour inscrire un nouvel étudiant : </h3>
+        
         
         <form action="student" method="post">
             <input type="hidden" name="action" value="add">

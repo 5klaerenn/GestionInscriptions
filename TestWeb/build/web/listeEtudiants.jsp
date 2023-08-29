@@ -22,12 +22,12 @@
                 <th>Last Name</th>
             </tr>
             
-            <c:forEach items="${personnes}" var="person">
+            <c:forEach items="${students}" var="student">
                 <tr>
-                    <td>${person.id}</td>
-                    <td>${person.name}</td>
-                    <td><a href="<c:url value='/index?personnes=${person.id}&action=update'/>">Modifier</a></td>
-                    <td><a href="<c:url value='/insdex?personnes=${person.id}&action=delete'/>">Supprimer</a></td>
+                    <td>${student.firstName}</td>
+                    <td>${student.lastName}</td>
+                    <td><a href="<c:url value='/updateStudent?id=${student.id}&action=update'/>">Modifier</a></td>
+                    <td><a href="<c:url value='/index?students=${person.id}&action=delete'/>">Supprimer</a></td>
                 </tr>
             </c:forEach>
 

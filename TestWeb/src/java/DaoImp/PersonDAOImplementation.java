@@ -35,7 +35,7 @@ public class PersonDAOImplementation implements PersonDao{
         PreparedStatement preparedStatement;
 
         try {
-            String createQuery = "INSERT INTO PERSON(first_name, last_name) VALUES(?, ?)";
+            String createQuery = "INSERT INTO PERSON(firstName, lastName) VALUES(?, ?)";
             preparedStatement = connection.prepareStatement(createQuery, new String[]{"id"});
 
             preparedStatement.setString(1, person.getFirstName());
@@ -72,8 +72,8 @@ public class PersonDAOImplementation implements PersonDao{
         if (resultSet.next()) {
             person = new Person();
             person.setId(resultSet.getInt("id"));
-            person.setFirstName(resultSet.getString("first_name"));
-            person.setLastName(resultSet.getString("last_name"));
+            person.setFirstName(resultSet.getString("firstName"));
+            person.setLastName(resultSet.getString("lastName"));
         }
 
         } catch (SQLException ex) {
@@ -97,8 +97,8 @@ public class PersonDAOImplementation implements PersonDao{
         while (resultSet.next()) {
             person = new Person();
             person.setId(resultSet.getInt("id"));
-            person.setFirstName(resultSet.getString("first_name"));
-            person.setLastName(resultSet.getString("last_name"));
+            person.setFirstName(resultSet.getString("firstName"));
+            person.setLastName(resultSet.getString("lastName"));
             persons.add(person);
         }
             resultSet.close();
@@ -116,7 +116,7 @@ public class PersonDAOImplementation implements PersonDao{
         PreparedStatement preparedStatement;
 
         try {
-            String updateQuery = "UPDATE PERSON SET first_name = ?, last_name = ? WHERE id = ?";
+            String updateQuery = "UPDATE PERSON SET firstName = ?, lastName = ? WHERE id = ?";
             preparedStatement = connection.prepareStatement(updateQuery);
             preparedStatement.setString(1, person.getFirstName());
             preparedStatement.setString(2, person.getLastName());

@@ -62,13 +62,16 @@ public class CoursController extends HttpServlet {
             //store data in User object and save User object in db
             Person person = new Person(firstName, lastName);
             dao.create(person);
-
             students.add(person);
             
             //set User object in request object and set URL
             request.setAttribute("students", students);
             url = "/listeEtudiants.jsp"; //the "thanks" page
 
+        } else if(action.equals("afficher")) {
+            students = dao.findAll();
+            request.setAttribute("students", students);
+            request.getRequestDispatcher("listeEtudiants.jsp").forward(request, response);
         } else if (action.equals("update")) {
             int id = Integer.parseInt(request.getParameter("id"));
             String firstName = request.getParameter("firstName");
@@ -80,16 +83,16 @@ public class CoursController extends HttpServlet {
             personToUpdate.setLastName(lastName);
 
             dao.update(personToUpdate);
-
+                      
             // Redirect to updateStudent.jsp for editing student details
             response.sendRedirect("updateStudent?id=" + id);
-            
-            url = "/listeEtudiants.jsp"; //the "thanks" page
-           
+            //response.sendRedirect("index?action=display");
+            return;
         } else if (action.equals("delete")) {
         
             int id = Integer.parseInt(request.getParameter("id"));
             dao.delete(id);
+            return;
         }
         
         

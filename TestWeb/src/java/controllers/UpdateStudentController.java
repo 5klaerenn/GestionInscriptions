@@ -35,4 +35,5 @@ public class UpdateStudentController extends HttpServlet {
         request.getRequestDispatcher("updateStudent.jsp")
                 .forward(request, response);
     }
+    
 }

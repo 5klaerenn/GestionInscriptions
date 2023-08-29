@@ -41,8 +41,19 @@
                 <tr>
                     <td>${student.firstName}</td>
                     <td>${student.lastName}</td>
-                    <td><a href="<c:url value='/updateStudent?id=${student.id}&action=update'/>">Modifier</a></td>
-                    <td><a href="<c:url value='/index?action=delete&id=${student.id}'/>">Supprimer</a></td>
+                    <td>
+                        <button type="button" class="action-button action-button-modify">
+                            <a href="<c:url value='/updateStudent?id=${student.id}&action=update'/>">Modifier</a>
+                        </button>
+                    </td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/student" method="post" style="display: inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="id" value="${student.id}">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                    
                 </tr>
             </c:forEach>
 
@@ -52,3 +63,5 @@
         
     </body>
 </html>
+
+

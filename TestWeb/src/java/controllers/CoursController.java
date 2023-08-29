@@ -3,17 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controllers;
-
 import DaoImp.PersonDAOImplementation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Person;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,20 +23,27 @@ import model.Person;
 @WebServlet({"/student"})
 public class CoursController extends HttpServlet {
     
-        PersonDAOImplementation dao;
-    
+    private static final Logger logger = Logger.getLogger(UpdateStudentController.class.getName());
+    PersonDAOImplementation dao;
+    List<Person> students;
+
     @Override
-    public void init(){
-       dao = new PersonDAOImplementation();
+    public void init() throws ServletException{
+       dao = new PersonDAOImplementation();                       
+       super.init();
+       Logger logger = Logger.getLogger("");
+       logger.setLevel(Level.INFO);
     }
     
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<Person> students = dao.findAll();
+        logger.info("dans le doGet");
+                
+        students = dao.findAll();
         request.setAttribute("students", students);
+
         
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
@@ -46,20 +54,24 @@ public class CoursController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
         String action = request.getParameter("action");
-
-        if (action != null) {
+        
+        if(action != null){
             switch (action) {
                 case "add":
+                    logger.info("in the add method");
+
                     String firstName = request.getParameter("firstName");
                     String lastName = request.getParameter("lastName");
-                    
+
                     Person newPerson = new Person(firstName, lastName);
                     dao.create(newPerson);
+                    logger.info("création réussie");
                     break;
-                case "update":
-                    
+
+                case "update":   
+                    logger.info("in the update method");
+
                     int id = Integer.parseInt(request.getParameter("id"));
                     String upfirstName = request.getParameter("firstName");
                     String uplastName = request.getParameter("lastName");
@@ -72,20 +84,21 @@ public class CoursController extends HttpServlet {
                     dao.update(personToUpdate);
 
                     // Redirect to updateStudent.jsp for editing student details
-                    response.sendRedirect("updateStudent?id=" + id);
+
                     return;
+
                 case "delete":
-                    int deleteId = Integer.parseInt(request.getParameter("id"));
-                    dao.delete(deleteId);
-                    return;
+                    logger.info("in the delete method");
+
+                    id = Integer.parseInt(request.getParameter("id"));
+                    dao.delete(id);
+                    break;
             }
         }
 
+        
+        logger.info("AAAAAAAARRRRRRRRFFFFFFFFFF");
         response.sendRedirect(request.getContextPath() + "/student"); // Redirect to doGet
-        
-        
-        
-        
         
     
     /*
@@ -160,5 +173,6 @@ public class CoursController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }

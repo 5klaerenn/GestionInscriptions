@@ -132,7 +132,7 @@ public class PersonDAOImplementation implements PersonDao{
     public void delete(int id) {
 
         PreparedStatement preparedStatement;
-
+        
         try {
             String deleteQuery = "DELETE FROM PERSON WHERE ID = ?";
             preparedStatement = connection.prepareStatement(deleteQuery);

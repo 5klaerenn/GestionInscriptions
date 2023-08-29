@@ -41,7 +41,7 @@ public class UpdateStudentController extends HttpServlet {
         
     }
     
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         int studentId = Integer.parseInt(request.getParameter("id"));

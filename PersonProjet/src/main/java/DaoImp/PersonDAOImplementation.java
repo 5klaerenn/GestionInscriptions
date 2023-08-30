@@ -1,20 +1,20 @@
 package DaoImp;
 
-import connection.ConnectionFactory;
+import connection.HibernateUtil;
 import interfaceDao.PersonDao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Person;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 
 public class PersonDAOImplementation implements PersonDao{
     
-    Connection connection = ConnectionFactory.getConnection();
-
+        Session session = null;
+        Transaction transaction = null;
+        
     // Constructor 
     public PersonDAOImplementation() {
 
@@ -23,27 +23,25 @@ public class PersonDAOImplementation implements PersonDao{
     // Create a new Person
     public void create(Person person) {
 
-        PreparedStatement preparedStatement;
-
         try {
-            String createQuery = "INSERT INTO PERSON(firstName, lastName) VALUES(?, ?)";
-            preparedStatement = connection.prepareStatement(createQuery, new String[]{"id"});
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
 
-            preparedStatement.setString(1, person.getFirstName());
-            preparedStatement.setString(2, person.getLastName());
+            // Save the person entity
+            session.persist(person);
 
-            preparedStatement.executeUpdate();
+            transaction.commit();
 
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                int generatedId = generatedKeys.getInt(1);
-                person.setId(generatedId);  // Set the generated ID in the Person object
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
             }
-
-            preparedStatement.close();
-        } catch (SQLException ex) {
             ex.printStackTrace();
-        
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
         
@@ -51,90 +49,102 @@ public class PersonDAOImplementation implements PersonDao{
     public Person findById(int id) {
         
         Person person = null;
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            // Retrieve the person entity by id
+            person = session.get(Person.class, id);
 
-    try {
-        String selectIdQuery = "SELECT * FROM person WHERE id = ?";
-        preparedStatement = connection.prepareStatement(selectIdQuery);
-        preparedStatement.setInt(1, id);
-        resultSet = preparedStatement.executeQuery();
-
-        if (resultSet.next()) {
-            person = new Person();
-            person.setId(resultSet.getInt("id"));
-            person.setFirstName(resultSet.getString("firstName"));
-            person.setLastName(resultSet.getString("lastName"));
-        }
-
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
         return person;
     }
+    
     
     @Override
      public List<Person> findAll() {
 
         List<Person> persons = new ArrayList<>();
-        Person person = null;
-        ResultSet resultSet;
-        PreparedStatement preparedStatement;
 
         try {
-            String selectAllQuery = "SELECT * FROM PERSON ORDER BY ID";
-            preparedStatement = connection.prepareStatement(selectAllQuery);
-            resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            person = new Person();
-            person.setId(resultSet.getInt("id"));
-            person.setFirstName(resultSet.getString("firstName"));
-            person.setLastName(resultSet.getString("lastName"));
-            persons.add(person);
-        }
-            resultSet.close();
-            preparedStatement.close();
-        } catch (SQLException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            // Create an HQL query to retrieve all Person entities
+            String hql = "FROM Person p ORDER BY p.id";
+            Query<Person> query = session.createQuery(hql, Person.class);
+            persons = query.getResultList();
+
+        } catch (Exception ex) {
             ex.printStackTrace();
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
+
         return persons;
     }
+    
     
 
     // Update person's info
     public void update(Person person) {
         
-        PreparedStatement preparedStatement;
-
         try {
-            String updateQuery = "UPDATE PERSON SET firstName = ?, lastName = ? WHERE id = ?";
-            preparedStatement = connection.prepareStatement(updateQuery);
-            preparedStatement.setString(1, person.getFirstName());
-            preparedStatement.setString(2, person.getLastName());
-            preparedStatement.setInt(3, person.getId());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-        } catch (SQLException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+
+            // Update the person entity
+            session.merge(person);
+
+            transaction.commit();
+
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             ex.printStackTrace();
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
     // Delete person
     public void delete(int id) {
 
-        PreparedStatement preparedStatement;
-        
         try {
-            String deleteQuery = "DELETE FROM PERSON WHERE ID = ?";
-            preparedStatement = connection.prepareStatement(deleteQuery);
-            
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-        } catch (SQLException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+
+            // Retrieve the person entity by id
+            Person person = session.get(Person.class, id);
+
+            if (person != null) {
+                // Delete the person entity
+                session.delete(person);
+            }
+
+            transaction.commit();
+
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             ex.printStackTrace();
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
-
 
 }

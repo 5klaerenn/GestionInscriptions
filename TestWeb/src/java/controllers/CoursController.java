@@ -23,13 +23,15 @@ import java.util.logging.Logger;
 @WebServlet({"/student"})
 public class CoursController extends HttpServlet {
     
-    private static final Logger logger = Logger.getLogger(UpdateStudentController.class.getName());
+    private static final Logger logger = Logger.getLogger(CoursController.class.getName());
+    
     PersonDAOImplementation dao;
     List<Person> students;
 
     @Override
     public void init() throws ServletException{
-       dao = new PersonDAOImplementation();                       
+       dao = new PersonDAOImplementation();  
+       
        super.init();
        Logger logger = Logger.getLogger("");
        logger.setLevel(Level.INFO);
@@ -39,13 +41,23 @@ public class CoursController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        logger.info("dans le doGet");
-                
+        
+        String action = request.getParameter("action");    
         students = dao.findAll();
         request.setAttribute("students", students);
-
         
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        logger.info("dans le doGet");
+
+        if (action != null && action.equals("update")) {
+            logger.info("ICI");
+            int studentId = Integer.parseInt(request.getParameter("id"));
+            // Fetch the student's information from the database using dao.findById(studentId)
+            Person student = dao.findById(studentId);
+            request.setAttribute("student", student);
+            request.getRequestDispatcher("updateStudent.jsp")
+                    .forward(request, response);
+        } 
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
     
 
@@ -84,7 +96,7 @@ public class CoursController extends HttpServlet {
                     dao.update(personToUpdate);
 
                     // Redirect to updateStudent.jsp for editing student details
-
+                    response.sendRedirect(request.getContextPath() + "/student");
                     return;
 
                 case "delete":

@@ -1,4 +1,5 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "mm" uri = "/WEB-INF/person.tld" %>
 <%@taglib prefix="fn" uri ="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="model.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,6 +36,8 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th></th>
+                <th></th>
             </tr>
             
             <c:forEach items="${students}" var="student">
@@ -43,7 +46,7 @@
                     <td>${student.lastName}</td>
                     <td>
                         <button type="button" class="action-button action-button-modify">
-                            <a href="<c:url value='/updateStudent?id=${student.id}&action=update'/>">Modifier</a>
+                            <a href="<c:url value='/student?id=${student.id}&action=update'/>">Modifier</a>
                         </button>
                     </td>
                     <td>
@@ -53,12 +56,15 @@
                             <button type="submit">Supprimer</button>
                         </form>
                     </td>
+
                     
                 </tr>
             </c:forEach>
 
         </table>
         
+        
+<p>Nous sommes le :  <mm:currentDate/> il est : <mm:currentTime/></p>
         
         
     </body>

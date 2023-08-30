@@ -13,7 +13,7 @@
                  
         <h3>Modifier les informations de l'étudiant : </h3>
         
-        <form action="updateStudent" method="post">
+        <form action="student" method="post">
             <input type="hidden" name="action" value="update">
             <input type="hidden" name="id" value="${student.id}">
 

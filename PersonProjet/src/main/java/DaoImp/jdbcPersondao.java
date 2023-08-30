@@ -10,17 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Person;
 
-
 /**
  *
  * @author User
  */
-public class PersonDAOImplementation implements PersonDao{
+public class jdbcPersondao implements PersonDao{
     
     Connection connection = ConnectionFactory.getConnection();
 
     // Constructor 
-    public PersonDAOImplementation() {
+    public jdbcPersondao() {
 
     }
 

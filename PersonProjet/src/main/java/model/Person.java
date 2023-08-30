@@ -1,15 +1,15 @@
 package model;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-/**
- *
- * @author User
- */
+@Entity
+@Table(name = "person")
 public class Person {
     
     private int id;
@@ -24,6 +24,9 @@ public class Person {
         this.lastName = lastName;
     }
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//pour h2
     public int getId() {
         return id;
     }
@@ -32,6 +35,7 @@ public class Person {
         this.id = id;
     }
 
+    @Column(name="firstname")
     public String getFirstName() {
         return firstName;
     }
@@ -40,6 +44,7 @@ public class Person {
         this.firstName = firstName;
     }
 
+    @Column(name="lastname")
     public String getLastName() {
         return lastName;
     }

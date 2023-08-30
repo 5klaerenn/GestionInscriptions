@@ -11,10 +11,6 @@ import java.util.List;
 import model.Person;
 
 
-/**
- *
- * @author User
- */
 public class PersonDAOImplementation implements PersonDao{
     
     Connection connection = ConnectionFactory.getConnection();

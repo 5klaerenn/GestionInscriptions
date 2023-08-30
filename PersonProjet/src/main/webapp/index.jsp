@@ -43,7 +43,7 @@
                     <td>${student.lastName}</td>
                     <td>
                         <button type="button" class="action-button action-button-modify">
-                            <a href="<c:url value='/updateStudent?id=${student.id}&action=update'/>">Modifier</a>
+                            <a href="<c:url value='/student?id=${student.id}&action=update'/>">Modifier</a>
                         </button>
                     </td>
                     <td>

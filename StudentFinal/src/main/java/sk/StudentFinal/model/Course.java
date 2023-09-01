@@ -1,13 +1,15 @@
-package model;
+package sk.StudentFinal.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "course")
-public class Course {
+public class Course implements Serializable {
 
     private String course_id;
     private String course_name;

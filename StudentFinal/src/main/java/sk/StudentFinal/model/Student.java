@@ -1,18 +1,38 @@
-package model;
+package sk.StudentFinal.model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "student_sk")
-public class Student {
+import java.io.Serializable;
 
-    private int StudentId;
+@Entity
+@Table(name = "student")
+public class Student implements Serializable {
+
+    @Id
+    @Column(name = "student_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int student_id;
+    @Column(name = "firstname")
+
     private String firstName;
+    @Column(name = "lastname")
     private String lastName;
+    @Column(name = "email")
+
     private String email;
+    @Column(name = "city")
     private String City;
     public Student() {
     }
+
+    public Student(int student_id, String firstName, String lastName, String email, String city) {
+        this.student_id = student_id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        City = city;
+    }
+
     public Student(String firstName, String lastName, String email, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,18 +40,15 @@ public class Student {
         City = city;
     }
 
-    @Id
-    @Column(name = "student_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getStudentId() {
-        return StudentId;
+        return student_id;
     }
 
-    public void setStudentId(int studentId) {
-        StudentId = studentId;
+    public void setStudentId(int student_id) {
+        this.student_id = student_id;
     }
 
-    @Column(name = "firstname")
     public String getFirstName() {
         return firstName;
     }
@@ -40,7 +57,7 @@ public class Student {
         this.firstName = firstName;
     }
 
-    @Column(name = "lastname")
+
     public String getLastName() {
         return lastName;
     }
@@ -49,7 +66,6 @@ public class Student {
         this.lastName = lastName;
     }
 
-    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -58,7 +74,7 @@ public class Student {
         this.email = email;
     }
 
-    @Column(name = "city")
+
     public String getCity() {
         return City;
     }
@@ -70,7 +86,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "StudentId=" + StudentId +
+                "StudentId=" + student_id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

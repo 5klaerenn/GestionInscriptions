@@ -129,7 +129,7 @@ public class PersonDAOImplementation implements PersonDao{
 
             if (person != null) {
                 // Delete the person entity
-                session.delete(person);
+                session.remove(person);
             }
 
             transaction.commit();

@@ -1,4 +1,4 @@
-package sk.StudentFinal.dao;
+package sk.StudentFinal.dao.JPAHibernate;
 
 import sk.StudentFinal.model.Student;
 

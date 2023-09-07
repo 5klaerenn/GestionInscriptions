@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Student Directory</title>
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Courses directory</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Student ID</th>
+                <th>Course ID</th>
+                <th>Session</th>
+                <th>Mark</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="res : ${results}">
+                <td th:text="${res.id.getStudent().getStudentId()}" />
+                <td th:text="${res.id.getCourse().getCourse_id()}" />
+                <td th:text="${res.id.getCourse_session()}" />
+                <td th:text="${res.mark}" />
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

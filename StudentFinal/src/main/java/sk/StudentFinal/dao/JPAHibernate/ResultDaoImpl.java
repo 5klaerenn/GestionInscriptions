@@ -1,11 +1,11 @@
-package sk.StudentFinal.dao;
+package sk.StudentFinal.dao.JPAHibernate;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import sk.StudentFinal.model.Result;
-import sk.StudentFinal.model.Student;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,16 +32,19 @@ public class ResultDaoImpl implements GenericDao<Result, String> {
     }
 
     @Override
+    @Transactional
     public void create(Result result) {
         entityManager.persist(result);
     }
 
     @Override
+    @Transactional
     public void update(Result result) {
         entityManager.merge(result);
     }
 
     @Override
+    @Transactional
     public void delete(String id) {
         Result result = entityManager.find(Result.class, id);
         entityManager.remove(result);

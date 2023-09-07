@@ -1,6 +1,6 @@
 package sk.StudentFinal.Service;
 
-import sk.StudentFinal.model.Student;
+import sk.StudentFinal.model.Result;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +11,7 @@ public interface GenericService<T, ID> {
 
     List<T> findAll();
 
-    Student create(T t);
+    void save(T t);
 
-    Student update(T t);
-
-    void delete(ID id);
+    void deleteById(ID id);
 }

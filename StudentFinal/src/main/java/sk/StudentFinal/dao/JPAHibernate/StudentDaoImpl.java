@@ -1,4 +1,4 @@
-package sk.StudentFinal.dao;
+package sk.StudentFinal.dao.JPAHibernate;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;

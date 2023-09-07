@@ -21,7 +21,7 @@ public class Student implements Serializable {
 
     private String email;
     @Column(name = "city")
-    private String City;
+    private String city;
     public Student() {
     }
 
@@ -30,14 +30,14 @@ public class Student implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        City = city;
+        this.city = city;
     }
 
     public Student(String firstName, String lastName, String email, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        City = city;
+        this.city = city;
     }
 
 
@@ -76,11 +76,11 @@ public class Student implements Serializable {
 
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        City = city;
+        this.city = city;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class Student implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", City='" + City + '\'' +
+                ", City='" + city + '\'' +
                 '}';
     }
 }

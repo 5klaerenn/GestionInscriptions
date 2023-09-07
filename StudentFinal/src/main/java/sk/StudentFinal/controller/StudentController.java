@@ -1,35 +1,33 @@
 package sk.StudentFinal.controller;
+import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import sk.StudentFinal.Service.StudentServiceImpl;
-import sk.StudentFinal.dao.StudentDaoImpl;
 import sk.StudentFinal.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/app")
 public class StudentController {
-    private StudentServiceImpl studServ;
-
+    StudentServiceImpl studentService;
     @Autowired
-    public StudentController(StudentServiceImpl studServ) {
-        this.studServ = studServ;
+    public StudentController(StudentServiceImpl studentService){this.studentService = studentService;}
+
+    private List<Student> studentList;
+
+    @PostConstruct
+    private void loadData(){
+        studentList = studentService.findAll();
     }
 
     @GetMapping("/student")
-    public List<Student> findAll() {
-        return studServ.findAll();
+    public String afficherTout(Model model) {
+        model.addAttribute("students", studentList);
+        return "list-students";
     }
 
-    @PostMapping("/student")
-    public Student addStudent(@RequestBody Student student) {
-        student.setStudentId(0);
-        return studServ.create(student);
-    }
-
-    @PutMapping("/student")
-    public Student updateStudent(@RequestBody Student student) {
-        return studServ.update(student);
-    }
 }

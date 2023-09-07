@@ -11,33 +11,38 @@ public class Result implements Serializable {
     @EmbeddedId
     private ResultId id;
 
-    @MapsId("student")
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-
-    @MapsId("course")
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
-    private String mark;
+    @Column(name = "mark")
+    private Double mark;
 
     public Result() {
     }
 
-    public Result(ResultId id, String mark) {
+    public Result(ResultId id, Double mark) {
         this.id = id;
         this.mark = mark;
     }
 
-    @Column(name = "mark")
-    public String getMark() {
+    public ResultId getId() {
+        return id;
+    }
+
+    public void setId(ResultId id) {
+        this.id = id;
+    }
+
+    public Double getMark() {
         return mark;
     }
 
-    public void setMark(String mark) {
+    public void setMark(Double mark) {
         this.mark = mark;
     }
 
-
+    @Override
+    public String toString() {
+        return "Result{" +
+                "id=" + id +
+                ", mark=" + mark +
+                '}';
+    }
 }

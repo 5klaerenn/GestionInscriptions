@@ -24,7 +24,7 @@ public class StudentController {
         studentList = studentService.findAll();
     }
 
-    @GetMapping("/student")
+    @GetMapping("/students")
     public String afficherTout(Model model) {
         model.addAttribute("students", studentList);
         return "list-students";

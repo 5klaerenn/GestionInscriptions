@@ -33,14 +33,6 @@ public class Student implements Serializable {
         this.city = city;
     }
 
-    public Student(String firstName, String lastName, String email, String city) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.city = city;
-    }
-
-
     public int getStudentId() {
         return student_id;
     }

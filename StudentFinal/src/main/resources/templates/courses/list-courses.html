@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
     <title>Courses</title>
 </head>
 
@@ -37,6 +37,10 @@
 
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-5 fw-bold text-success-emphasis">Courses</h1>
+            <br>
+            <br>
+            <button class="btn btn-outline-secondary d-inline-flex align-items-center text-success-emphasis" type="button" ><a th:href="@{/app/newcourse}" class="nav-link text-success-emphasis">Add Course</a></button>
+
         </div>
 
         <div class="container">
@@ -57,9 +61,17 @@
                 <td th:text="${cours.course_id}" />
                 <td th:text="${cours.course_name}" />
                 <td th:text="${cours.credits}" />
-                <td>
-                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Modifier</button>
-                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Supprimer</button>
+                <td class="d-flex justify-content-sm-evenly align-items-sm-center">
+                    <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/updatecourse(course_id=${cours.course_id})}" class="nav-link">Update</a>
+                    </button>
+
+                    <button class="btn btn-outline-success" type="button">
+                        <a th:href="@{/app/deletecourse(course_id=${cours.course_id})}"
+                           class="nav-link"
+                           onclick="if(!(confirm('Are you sure you want to delete this course ?'))) return false">
+                            Delete</a>
+                    </button>
                 </td>
             </tr>
         </tbody>

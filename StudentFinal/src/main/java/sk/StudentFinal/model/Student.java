@@ -11,7 +11,7 @@ public class Student implements Serializable {
     @Id
     @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int student_id;
+    private int studentId;
     @Column(name = "firstname")
 
     private String firstName;
@@ -25,8 +25,8 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(int student_id, String firstName, String lastName, String email, String city) {
-        this.student_id = student_id;
+    public Student(int studentId, String firstName, String lastName, String email, String city) {
+        this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,11 +34,11 @@ public class Student implements Serializable {
     }
 
     public int getStudentId() {
-        return student_id;
+        return studentId;
     }
 
-    public void setStudentId(int student_id) {
-        this.student_id = student_id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getFirstName() {
@@ -78,7 +78,7 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return "Student{" +
-                "StudentId=" + student_id +
+                "StudentId=" + studentId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

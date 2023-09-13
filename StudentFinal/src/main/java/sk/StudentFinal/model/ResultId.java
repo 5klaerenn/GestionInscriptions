@@ -8,39 +8,38 @@ import java.io.Serializable;
 
 @Embeddable
 public class ResultId implements Serializable {
-    @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-    private Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
-    private Course course;
+    @Column(name = "student_id")
+    private int studentId;
+
+    @Column(name = "course_id")
+    private String course_id;
 
     @Column(name = "course_session")
     private String course_session;
 
     public ResultId() {}
 
-    public ResultId(Student student, Course course, String course_session) {
-        this.student = student;
-        this.course = course;
+    public ResultId(int studentId, String course_id, String course_session) {
+        this.studentId = studentId;
+        this.course_id = course_id;
         this.course_session = course_session;
     }
 
-    public Student getStudent() {
-        return student;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(int student_id) {
+        this.studentId = student_id;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourse_id() {
+        return course_id;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourse_id(String course_id) {
+        this.course_id = course_id;
     }
 
     public String getCourse_session() {
@@ -53,7 +52,7 @@ public class ResultId implements Serializable {
 
     @Override
     public String toString() {
-        return student.getStudentId() + course.getCourse_id() + course_session;
+        return studentId + course_id + course_session;
     }
 }
 

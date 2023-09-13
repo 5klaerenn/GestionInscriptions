@@ -35,17 +35,18 @@ public class StudentController {
     }
 
     @GetMapping("/updstudent")
-    public String studentUpdateForm(@RequestParam("student_id") int id, Model model) {
+    public String studentUpdateForm(@RequestParam("studentId") int id, Model model) {
         Optional<Student> updstudent = studentService.findById(id);
         model.addAttribute("student", updstudent);
         return "students/form-students";
     }
 
     @GetMapping("/deletestudent")
-    public String deleteStudent(@RequestParam("student_id") int id) {
+    public String deleteStudent(@RequestParam("studentId") int id) {
         studentService.deleteById(id);
         return "redirect:/app/students";
     }
+
 
     @PostMapping("/students")
     public String saveStudent(@ModelAttribute("student") Student newStudent){

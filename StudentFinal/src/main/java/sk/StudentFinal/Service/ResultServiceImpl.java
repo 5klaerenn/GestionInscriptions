@@ -45,4 +45,9 @@ public class ResultServiceImpl implements GenericService<Result, String> {
         resRepo.deleteById(id);
     }
 
+    public List<Result> getResultByStudentId(int studentId) {
+        return resRepo.findResultByStudent_StudentId(studentId);
+    }
+
+
 }

@@ -55,9 +55,9 @@
 
         <tbody>
             <tr th:each="res : ${results}">
-                <td th:text="${res.id.getStudent().getStudentId()}" />
-                <td th:text="${res.id.getCourse().getCourse_id()}" />
-                <td th:text="${res.id.getCourse_session()}" />
+                <td th:text="${res.getId().getStudentId()}" />
+                <td th:text="${res.getId().getCourse_id()}" />
+                <td th:text="${res.getId().getCourse_session()}" />
                 <td th:text="${res.mark}" />
                 <td>
                     <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Modifier</button>

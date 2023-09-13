@@ -50,7 +50,17 @@ public class ResultController {
         List<Result> resultList = resultService.getResultByStudentId(id);
         model.addAttribute("results", resultList);
         model.addAttribute("student", student.get());
-        return "results/list-results";
+        return "results/list-results-student";
+    }
+
+    @GetMapping("/results_course")
+    public String afficherNoteCourse(@RequestParam("courseId") String id, Model model){
+        Optional<Course> course = courseService.findById(id);
+
+        List<Result> resultList = resultService.getResultByCourses(id);
+        model.addAttribute("results", resultList);
+        model.addAttribute("courses", course.get());
+        return "results/list-results-course";
     }
 
 

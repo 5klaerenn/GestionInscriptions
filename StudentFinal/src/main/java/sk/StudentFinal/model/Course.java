@@ -13,7 +13,7 @@ public class Course implements Serializable {
 
     @Id
     @Column(name = "course_id")
-    private String course_id;
+    private String courseId;
 
     @Column(name = "course_name")
     private String course_name;
@@ -24,19 +24,19 @@ public class Course implements Serializable {
     public Course() {
     }
 
-    public Course(String course_id, String course_name, int credits) {
-        this.course_id = course_id;
+    public Course(String courseId, String course_name, int credits) {
+        this.courseId = courseId;
         this.course_name = course_name;
         this.credits = credits;
     }
 
 
-    public String getCourse_id() {
-        return course_id;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setCourse_id(String course_id) {
-        this.course_id = course_id;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
 
@@ -60,7 +60,7 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "Course{" +
-                "course_id='" + course_id + '\'' +
+                "course_id='" + courseId + '\'' +
                 ", course_name='" + course_name + '\'' +
                 ", credits=" + credits +
                 '}';

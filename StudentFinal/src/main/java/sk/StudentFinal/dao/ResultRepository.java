@@ -9,6 +9,7 @@ public interface ResultRepository extends JpaRepository<Result, String> {
 
     List<Result> findResultByStudent_StudentId(int studentId);
 
+    List<Result> findResultByCourse_CourseId(String courseId);
 
 }
 

@@ -8,7 +8,7 @@
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="../style.css" rel="stylesheet">
-    <title>Courses</title>
+    <title>Results</title>
 </head>
 
 
@@ -26,8 +26,8 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a th:href="@{/app}" class="nav-link text-success-emphasis">Home</a></li>
             <li class="nav-item"><a th:href="@{/app/students}" class="nav-link text-success-emphasis">Students</a></li>
-            <li class="nav-item"><a th:href="@{/app/courses}" class="nav-link active bg-success" aria-current="page">Courses</a></li>
-            <li class="nav-item"><a th:href="@{/app/results}" class="nav-link text-success-emphasis">Results</a></li>
+            <li class="nav-item"><a th:href="@{/app/courses}" class="nav-link text-success-emphasis">Courses</a></li>
+            <li class="nav-item"><a th:href="@{/app/results}" class="nav-link active bg-success" aria-current="page">Results</a></li>
         </ul>
     </header>
 </div>
@@ -36,11 +36,8 @@
     <div class="bg-light p-5 rounded">
 
         <div class="px-4 py-5 my-5 text-center">
-            <h1 class="display-5 fw-bold text-success-emphasis">Courses</h1>
-            <br>
-            <br>
-            <button class="btn btn-outline-secondary d-inline-flex align-items-center text-success-emphasis" type="button" ><a th:href="@{/app/newcourse}" class="nav-link text-success-emphasis">Add Course</a></button>
-
+            <h1 class="display-5 fw-bold text-success-emphasis">Results</h1>
+            <h3 th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}" />
         </div>
 
         <div class="container">
@@ -49,45 +46,35 @@
                 <table class="table table-bordered ">
                     <thead class="table-light ">
             <tr>
-                <th>Course id</th>
-                <th>Course name</th>
-                <th>Credits</th>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Session</th>
+                <th>Mark</th>
                 <th></th>
             </tr>
         </thead>
 
         <tbody>
-            <tr th:each="cours : ${courses}">
-                <td th:text="${cours.courseId}" />
-                <td th:text="${cours.course_name}" />
-                <td th:text="${cours.credits}" />
-                <td class="d-flex justify-content-sm-evenly align-items-sm-center">
-                    <button class=" btn btn-outline-success"  type="button">
-                        <a th:href="@{/app/results_course(courseId=${cours.courseId})}" class="nav-link">See Results</a>
-                    </button> &emsp;
-
-                    <button class=" btn btn-outline-success"  type="button">
-                        <a th:href="@{/app/updatecourse(course_id=${cours.courseId})}" class="nav-link">Update</a>
-                    </button>
-
-                    <button class="btn btn-outline-success" type="button">
-                        <a th:href="@{/app/deletecourse(course_id=${cours.courseId})}"
-                           class="nav-link"
-                           onclick="if(!(confirm('Are you sure you want to delete this course ?'))) return false">
-                            Delete</a>
-                    </button>
+            <tr th:each="res : ${results}">
+                <td th:text="${res.getId().getCourse_id()}" />
+                <td th:text="${res.getCourse().getCourse_name()}" />
+                <td th:text="${res.getId().getCourse_session()}" />
+                <td th:text="${res.mark}" />
+                <td>
+                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Modifier</button>
+                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Supprimer</button>
                 </td>
             </tr>
         </tbody>
 
     </table>
 
-    </div>
-        <div class="px-4 py-5 my-5 text-center">
-            <h1 class="display-5 fw-bold text-success-emphasis"></h1>
+</div>
+            <div class="px-4 py-5 my-5 text-center">
+                <h1 class="display-5 fw-bold text-success-emphasis"></h1>
+            </div>
         </div>
-    </div>
-    </div>
+</div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

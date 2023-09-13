@@ -45,7 +45,8 @@
                 <table class="table table-bordered ">
                     <thead class="table-light ">
             <tr>
-                <th>Student ID</th>
+                <th>Student Firstname</th>
+                <th>Student Lastname</th>
                 <th>Course ID</th>
                 <th>Session</th>
                 <th>Mark</th>
@@ -55,7 +56,8 @@
 
         <tbody>
             <tr th:each="res : ${results}">
-                <td th:text="${res.getId().getStudentId()}" />
+                <td th:text="${res.getStudent().getFirstName()} " />
+                <td th:text="${res.getStudent().getLastName()}" />
                 <td th:text="${res.getId().getCourse_id()}" />
                 <td th:text="${res.getId().getCourse_session()}" />
                 <td th:text="${res.mark}" />

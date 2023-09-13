@@ -49,5 +49,9 @@ public class ResultServiceImpl implements GenericService<Result, String> {
         return resRepo.findResultByStudent_StudentId(studentId);
     }
 
+    public List<Result> getResultByCourses(String courseId) {
+        return resRepo.findResultByCourse_CourseId(courseId);
+    }
+
 
 }

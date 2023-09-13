@@ -32,14 +32,14 @@ public class CourseController {
     }
 
     @GetMapping("/updatecourse")
-    public String courseUpdateForm(@RequestParam("course_id") String id, Model model) {
+    public String courseUpdateForm(@RequestParam("courseId") String id, Model model) {
         Optional<Course> course = courseService.findById(id);
         model.addAttribute("course", course);
         return "courses/form-updatecourses";
     }
 
     @GetMapping("/deletecourse")
-    public String deleteStudent(@RequestParam("course_id") String id) {
+    public String deleteStudent(@RequestParam("courseId") String id) {
         courseService.deleteById(id);
         return "redirect:/app/courses";
     }

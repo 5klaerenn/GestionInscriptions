@@ -48,14 +48,13 @@
                             <input type="hidden" id="studentId" name="studentId" th:value="${studentId}">
 
                             <div class="row g-3">
-
-                                <div class="col-12">
-                                    <label for="courseId" class="form-label">Course id</label>
-                                    <input type="text" class="form-control" id="courseId" th:field="*{id.courseId}" placeholder="" value="" th:required="true">
-                                    <div class="invalid-feedback">
-                                        Valid course name is required.
-                                    </div>
-                                </div>
+                                <label for="courseId" class="form-label">Course</label>
+                                <select class="form-control" id="courseId" name="courseId" th:field="*{id.courseId}">
+                                    <option value="">Select a course</option>
+                                    <th:block th:each="course : ${courseList}">
+                                        <option th:value="${course.courseId}" th:text="${course.course_name}"></option>
+                                    </th:block>
+                                </select>
 
                                 <div class="col-12">
                                     <label for="courseSession" class="form-label">Course session</label>

@@ -1,6 +1,8 @@
 package sk.StudentFinal.controller;
 
-import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/app")
 public class ResultController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResultController.class);
 
     private ResultServiceImpl resultService;
     private StudentServiceImpl studentService;
@@ -74,6 +78,9 @@ public class ResultController {
 
     @GetMapping("/add-result-student")
     public String newResultStudent(@RequestParam("studentId") int studentId, Model model){
+        List<Course> courseList = courseService.findAll();
+
+        model.addAttribute("courseList", courseList);
         model.addAttribute("studentId", studentId);
         model.addAttribute("result", new Result());
         return "results/form-results-student";
@@ -81,7 +88,10 @@ public class ResultController {
 
     @PostMapping("/add-result-student")
     public String saveResultStudent(@RequestParam("studentId") int studentId,
-                        @ModelAttribute("result") Result newResult){
+                        @ModelAttribute("result") Result newResult) throws Exception {
+
+        logger.debug("Received studentId: {}", studentId);
+
         newResult.getId().setStudentId(studentId);
         resultService.save(newResult);
         return "redirect:/app/results";

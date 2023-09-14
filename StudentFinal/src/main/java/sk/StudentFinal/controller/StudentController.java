@@ -6,6 +6,7 @@ import sk.StudentFinal.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,8 @@ public class StudentController {
     @GetMapping("/students")
     public String afficherTout(Model model) {
         List<Student> studentList = studentService.findAll();
+        Collections.sort(studentList, (student1, student2) -> student1.getLastName().compareTo(student2.getLastName()));
+
         model.addAttribute("students", studentList);
         return "students/list-students";
     }

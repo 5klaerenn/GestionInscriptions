@@ -8,6 +8,7 @@ import sk.StudentFinal.Service.CourseServiceImpl;
 import sk.StudentFinal.model.Course;
 import sk.StudentFinal.model.Student;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ public class CourseController {
     @GetMapping("/courses")
     public String afficherTout(Model model) {
         List<Course> courseList = courseService.findAll();
+        Collections.sort(courseList, (course1, course2) -> course1.getCourseId().compareTo(course2.getCourseId()));
         model.addAttribute("courses", courseList);
         return "courses/list-courses";
     }

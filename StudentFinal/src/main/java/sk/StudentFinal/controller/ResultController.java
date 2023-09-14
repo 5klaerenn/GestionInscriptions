@@ -14,6 +14,7 @@ import sk.StudentFinal.model.Course;
 import sk.StudentFinal.model.Result;
 import sk.StudentFinal.model.Student;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class ResultController {
     @GetMapping("/results")
     public String afficherTout(Model model){
         List<Result> resultList = resultService.findAll();
+        Collections.sort(resultList, (result1, result2) -> result1.getId().getCourseId().compareTo(result2.getId().getCourseId()));
         model.addAttribute("results", resultList);
         return "results/list-results";
     }

@@ -156,5 +156,13 @@ public class ResultController {
         return "redirect:/app/results";
     }
 
-
+    @GetMapping("/delete-result")
+    public String deleteResult(@RequestParam("studentId") int studentId,
+                                   @RequestParam("courseId") String courseId,
+                                   @RequestParam("session") String courseSession,
+                                   Model model) {
+        ResultId resultId = new ResultId(studentId, courseId, courseSession);
+        resultService.deleteById(resultId);
+        return "redirect:/app/results";
+    }
 }

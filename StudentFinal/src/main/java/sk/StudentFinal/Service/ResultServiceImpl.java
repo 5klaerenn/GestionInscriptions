@@ -11,21 +11,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ResultServiceImpl implements GenericService<Result, String> {
+public class ResultServiceImpl implements GenericService<Result, ResultId> {
 
     private ResultRepository resRepo;
     @Autowired
     public ResultServiceImpl(ResultRepository resRepo){this.resRepo = resRepo;}
 
     @Override
-    public Optional<Result> findById(String id) {
-        Optional<Result> result = resRepo.findById(id);
+    public Optional<Result> findById(ResultId resultId) {
+        Optional<Result> result = resRepo.findById(resultId);
         Result resultat;
 
         if (result.isPresent()){
             resultat= result.get();
         } else {
-            throw new RuntimeException("Did not find resultat id - " + id);
+            throw new RuntimeException("Did not find resultat id - " + resultId.toString());
         }
 
         return Optional.of(resultat);
@@ -42,8 +42,8 @@ public class ResultServiceImpl implements GenericService<Result, String> {
     }
 
     @Override
-    public void deleteById(String id) {
-        resRepo.deleteById(id);
+    public void deleteById(ResultId resultId) {
+        resRepo.deleteById(resultId);
     }
 
     public List<Result> getResultByStudentId(int studentId) {

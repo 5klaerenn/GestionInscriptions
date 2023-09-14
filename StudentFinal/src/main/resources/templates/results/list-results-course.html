@@ -45,7 +45,7 @@
 
                 <table class="table table-bordered ">
                     <thead class="table-light ">
-            <tr>
+            <tr>N
                 <th>Student name</th>
                 <th>Session</th>
                 <th>Mark</th>
@@ -63,6 +63,11 @@
                         <a th:href="@{/app/update-result(studentId=${res.getId().studentId},
                                             courseId=${res.getId().courseId},
                                             session=${res.getId().getCourseSession()})}" class="nav-link">Update</a>
+                    </button> &emsp;
+                    <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/delete-result(studentId=${res.getId().studentId},
+                                            courseId=${res.getId().courseId},
+                                            session=${res.getId().getCourseSession()})}" class="nav-link">Delete</a>
                     </button> &emsp;
                 </td>
             </tr>

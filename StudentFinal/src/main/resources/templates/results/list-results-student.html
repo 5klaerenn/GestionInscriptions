@@ -66,6 +66,11 @@
                                             courseId=${res.getId().courseId},
                                             session=${res.getId().getCourseSession()})}" class="nav-link">Update</a>
                     </button> &emsp;
+                    <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/delete-result(studentId=${res.getId().studentId},
+                                            courseId=${res.getId().courseId},
+                                            session=${res.getId().getCourseSession()})}" class="nav-link">Delete</a>
+                    </button> &emsp;
 
                 </td>
             </tr>

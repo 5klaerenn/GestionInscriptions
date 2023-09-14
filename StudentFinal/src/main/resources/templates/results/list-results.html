@@ -62,8 +62,11 @@
                 <td th:text="${res.getId().getCourseSession()}" />
                 <td th:text="${res.mark}" />
                 <td>
-                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Modifier</button>
-                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">Supprimer</button>
+                    <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/update-result(studentId=${res.getId().studentId},
+                                            courseId=${res.getId().courseId},
+                                            session=${res.getId().getCourseSession()})}" class="nav-link">Update</a>
+                    </button>
                 </td>
             </tr>
         </tbody>

@@ -12,8 +12,10 @@ import sk.StudentFinal.Service.ResultServiceImpl;
 import sk.StudentFinal.Service.StudentServiceImpl;
 import sk.StudentFinal.model.Course;
 import sk.StudentFinal.model.Result;
+import sk.StudentFinal.model.ResultId;
 import sk.StudentFinal.model.Student;
 
+import javax.swing.text.html.Option;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -72,6 +74,7 @@ public class ResultController {
         return "results/form-results";
     }
 
+
     @PostMapping("/add-result")
     public String saveResult(@ModelAttribute("result") Result newResult){
         resultService.save(newResult);
@@ -124,6 +127,32 @@ public class ResultController {
         newResult.getId().setCourseId(courseId);
         resultService.save(newResult);
 
+        return "redirect:/app/results";
+    }
+
+    @GetMapping("/update-result")
+    public String updateResultForm(@RequestParam("studentId") int studentId,
+                                   @RequestParam("courseId") String courseId,
+                                   @RequestParam("session") String courseSession,
+                                   Model model) {
+
+        Optional<Student> updstudent = studentService.findById(studentId);
+        Optional<Course> updcourse = courseService.findById(courseId);
+        ResultId resultId = new ResultId(studentId, courseId ,courseSession);
+        Optional<Result> updresult = Optional.ofNullable(resultService.getResultById(resultId));
+
+            model.addAttribute("student", updstudent.orElse(null));
+            model.addAttribute("course", updcourse.orElse(null));
+            model.addAttribute("session", courseSession);
+            model.addAttribute("result", updresult);
+
+        return "results/update-result";
+
+    }
+
+    @PostMapping("/update-result")
+    public String saveUpdatedResult(@ModelAttribute("result") Result updresult) {
+        resultService.save(updresult);
         return "redirect:/app/results";
     }
 

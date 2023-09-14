@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sk.StudentFinal.dao.ResultRepository;
 import sk.StudentFinal.model.Course;
 import sk.StudentFinal.model.Result;
+import sk.StudentFinal.model.ResultId;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,9 @@ public class ResultServiceImpl implements GenericService<Result, String> {
 
     public List<Result> getResultByCourses(String courseId) {
         return resRepo.findResultByCourse_CourseId(courseId);
+    }
+    public Result getResultById(ResultId resultId)  {
+        return resRepo.findResultById(resultId);
     }
 
 

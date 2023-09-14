@@ -68,6 +68,10 @@
                     </button> &emsp;
 
                     <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/add-result-course(courseId=${cours.getCourseId()})}" class="nav-link">Add Results</a>
+                    </button> &emsp;
+
+                    <button class=" btn btn-outline-success"  type="button">
                         <a th:href="@{/app/updatecourse(courseId=${cours.courseId})}" class="nav-link">Update</a>
                     </button>
 

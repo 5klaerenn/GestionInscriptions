@@ -78,8 +78,10 @@ public class ResultController {
 
     @GetMapping("/add-result-student")
     public String newResultStudent(@RequestParam("studentId") int studentId, Model model){
+        Optional<Student> student = studentService.findById(studentId);
         List<Course> courseList = courseService.findAll();
 
+        model.addAttribute("student", student.get());
         model.addAttribute("courseList", courseList);
         model.addAttribute("studentId", studentId);
         model.addAttribute("result", new Result());
@@ -88,12 +90,38 @@ public class ResultController {
 
     @PostMapping("/add-result-student")
     public String saveResultStudent(@RequestParam("studentId") int studentId,
-                        @ModelAttribute("result") Result newResult) throws Exception {
+                        @ModelAttribute("result") Result newResult) {
 
         logger.debug("Received studentId: {}", studentId);
 
         newResult.getId().setStudentId(studentId);
         resultService.save(newResult);
+        return "redirect:/app/results";
+    }
+
+    @GetMapping("/add-result-course")
+    public String newResultCourse(@RequestParam("courseId") String courseId,
+                                  Model model){
+
+        Optional<Course> course = courseService.findById(courseId);
+        List<Student> studentList = studentService.findAll();
+
+        model.addAttribute("course", course.get());
+        model.addAttribute("studentList", studentList);
+        model.addAttribute("courseId", courseId);
+        model.addAttribute("result", new Result());
+        return "results/form-results-course";
+    }
+
+    @PostMapping("/add-result-course")
+    public String saveResultCourse(@RequestParam("courseId") String courseId,
+                                    @ModelAttribute("result") Result newResult) {
+
+        logger.debug("Received courseId: {}", courseId);
+
+        newResult.getId().setCourseId(courseId);
+        resultService.save(newResult);
+
         return "redirect:/app/results";
     }
 

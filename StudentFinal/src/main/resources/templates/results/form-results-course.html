@@ -35,27 +35,28 @@
         <div class="container">
 
                 <div class="py-5 text-center">
-                    <h1 class="display-5 fw-bold text-success-emphasis">Results</h1>
-                    <h3 th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}" />
+                    <h1>New result</h1>
+                    <h3 th:text="${course.getCourseId()} + ' ' + ${course.getCourse_name()}" />
                 </div>
 
                     <div class="col-md-6" >
 
                         <h4 class="mb-3">Course info</h4>
 
-                        <form action="#" class="needs-validation" th:action="@{add-result-student}"
+                        <form action="#" class="needs-validation" th:action="@{add-result-course}"
                                                     th:object="${result}" method="post">
 
-                            <input type="hidden" id="studentId" name="studentId" th:value="${studentId}">
+                            <input type="hidden" id="courseId" name="courseId" th:value="${courseId}">
 
                             <div class="row g-3">
-                                <label for="courseId" class="form-label">Course</label>
-                                <select class="form-control" id="courseId" name="courseId" th:field="*{id.courseId}">
-                                    <option value="">Select a course</option>
-                                    <th:block th:each="course : ${courseList}">
-                                        <option th:value="${course.courseId}" th:text="${course.course_name}"></option>
-                                    </th:block>
-                                </select>
+                                <div class="col-12">
+                                    <label for="studentId" class="form-label">Student</label>
+                                    <select class="form-control" id="studentId" name="studentId" th:field="*{id.studentId}">
+                                        <th:block th:each="student : ${studentList}">
+                                            <option th:value="${student.studentId}" th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
 
                                 <div class="col-12">
                                     <label for="courseSession" class="form-label">Course session</label>

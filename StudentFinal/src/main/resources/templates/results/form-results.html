@@ -42,31 +42,39 @@
 
                         <h4 class="mb-3">Course info</h4>
 
-                        <form action="#" class="needs-validation" th:action="@{courses}"
-                                                    th:object="${course}" method="post">
+                        <form action="#" class="needs-validation" th:action="@{add-result}"
+                                                    th:object="${result}" method="post">
 
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <label for="course_id" class="form-label">Course id</label>
-                                    <input type="text" class="form-control" id="course_id" th:field="*{course_id}" placeholder="" value="" th:required="true">
+                                    <label for="studentId" class="form-label">Student ID</label>
+                                    <input type="number" class="form-control" id="studentId" th:field="*{id.studentId}" placeholder="" value="" th:required="true">
                                     <div class="invalid-feedback">
                                         Valid course ID is required.
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="course_name" class="form-label">Course name</label>
-                                    <input type="text" class="form-control" id="course_name" th:field="*{course_name}" placeholder="" value="" th:required="true">
+                                    <label for="courseId" class="form-label">Course id</label>
+                                    <input type="text" class="form-control" id="courseId" th:field="*{id.courseId}" placeholder="" value="" th:required="true">
                                     <div class="invalid-feedback">
                                         Valid course name is required.
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="credits" class="form-label">Credits</label>
-                                    <input type="text" class="form-control" id="credits" th:field="*{credits}" placeholder="" value="" th:required="true">
+                                    <label for="courseSession" class="form-label">Course session</label>
+                                    <input type="text" class="form-control" id="courseSession" th:field="*{id.courseSession}" placeholder="" value="" th:required="true">
                                     <div class="invalid-feedback">
                                         Credits amount is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="mark" class="form-label">Mark</label>
+                                    <input type="number" class="form-control" id="mark" th:field="*{mark}" placeholder="" value="" th:required="true">
+                                    <div class="invalid-feedback">
+                                        Valid result is required.
                                     </div>
                                 </div>
                             </div>

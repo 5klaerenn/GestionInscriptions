@@ -4,10 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import sk.StudentFinal.Service.CourseServiceImpl;
 import sk.StudentFinal.Service.ResultServiceImpl;
 import sk.StudentFinal.Service.StudentServiceImpl;
@@ -63,9 +60,17 @@ public class ResultController {
         return "results/list-results-course";
     }
 
+    @GetMapping("/add-result")
+    public String newResult(Model model){
+        model.addAttribute("result", new Result());
+        return "results/form-results";
+    }
 
-
-
+    @PostMapping("/add-result")
+    public String saveResult(@ModelAttribute("result") Result newResult){
+        resultService.save(newResult);
+        return "redirect:/app/results";
+    }
 
 
 

@@ -13,17 +13,17 @@ public class ResultId implements Serializable {
     private int studentId;
 
     @Column(name = "course_id")
-    private String course_id;
+    private String courseId;
 
     @Column(name = "course_session")
-    private String course_session;
+    private String courseSession;
 
     public ResultId() {}
 
-    public ResultId(int studentId, String course_id, String course_session) {
+    public ResultId(int studentId, String courseId, String courseSession) {
         this.studentId = studentId;
-        this.course_id = course_id;
-        this.course_session = course_session;
+        this.courseId = courseId;
+        this.courseSession = courseSession;
     }
 
     public int getStudentId() {
@@ -34,25 +34,25 @@ public class ResultId implements Serializable {
         this.studentId = student_id;
     }
 
-    public String getCourse_id() {
-        return course_id;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setCourse_id(String course_id) {
-        this.course_id = course_id;
+    public void setCourseId(String course_id) {
+        this.courseId = course_id;
     }
 
-    public String getCourse_session() {
-        return course_session;
+    public String getCourseSession() {
+        return courseSession;
     }
 
-    public void setCourse_session(String course_session) {
-        this.course_session = course_session;
+    public void setCourseSession(String course_session) {
+        this.courseSession = course_session;
     }
 
     @Override
     public String toString() {
-        return studentId + course_id + course_session;
+        return studentId + courseId + courseSession;
     }
 }
 

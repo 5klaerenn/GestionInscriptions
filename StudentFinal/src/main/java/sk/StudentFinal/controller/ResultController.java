@@ -72,6 +72,20 @@ public class ResultController {
         return "redirect:/app/results";
     }
 
+    @GetMapping("/add-result-student")
+    public String newResultStudent(@RequestParam("studentId") int studentId, Model model){
+        model.addAttribute("studentId", studentId);
+        model.addAttribute("result", new Result());
+        return "results/form-results-student";
+    }
+
+    @PostMapping("/add-result-student")
+    public String saveResultStudent(@RequestParam("studentId") int studentId,
+                        @ModelAttribute("result") Result newResult){
+        newResult.getId().setStudentId(studentId);
+        resultService.save(newResult);
+        return "redirect:/app/results";
+    }
 
 
 }

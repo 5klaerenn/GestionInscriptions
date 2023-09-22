@@ -19,6 +19,10 @@
 /jsp/jspdemo/dist/
 /jsp/jspdemo/build/
 >>>>>>> 276bb19d50fed07da89230958d85b304d1d55288
+<<<<<<< HEAD
+/PersonProjet/target/
+=======
 /TestWeb_hibernate/nbproject/private/
 /PersonProjet/target/
 /PersonSpring/target/
+>>>>>>> d65ee4d57d6110ff930417217573c333b9124a86

@@ -47,8 +47,9 @@
         <div class="container">
             <div class="container marketing">
 
-                <table class="table table-bordered ">
-                    <thead class="table-light ">
+                <div class="table-responsive small">
+                    <table class="table table-striped table-sm">
+                        <thead>
             <tr>
                 <th>Course id</th>
                 <th>Course name</th>
@@ -62,7 +63,7 @@
                 <td th:text="${cours.getCourseId()}" />
                 <td th:text="${cours.getCourse_name()}" />
                 <td th:text="${cours.getCredits()}" />
-                <td class="d-flex justify-content-sm-evenly align-items-sm-center">
+                <td class="d-flex justify-content-sm-end align-items-sm-center">
                     <button class=" btn btn-outline-success"  type="button">
                         <a th:href="@{/app/results_course(courseId=${cours.getCourseId()})}" class="nav-link">See Results</a>
                     </button> &emsp;
@@ -73,7 +74,7 @@
 
                     <button class=" btn btn-outline-success"  type="button">
                         <a th:href="@{/app/updatecourse(courseId=${cours.courseId})}" class="nav-link">Update</a>
-                    </button>
+                    </button>&emsp;
 
                     <button class="btn btn-outline-success" type="button">
                         <a th:href="@{/app/deletecourse(courseId=${cours.courseId})}"

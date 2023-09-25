@@ -1,28 +1,33 @@
-/Cours1/build/
-<<<<<<< HEAD
-/servletapp2/nbproject/private/
-/servletapp/nbproject/private/
-/servletapp/build/
-/servletapp/dist/
-/webapp2/nbproject/private/
-/webapp2/build/
-/jsp/chapter2/nbproject/private/
-/jsp/chapter2/build/
-/WebApp/nbproject/private/
-/WebApp/build/
-/jsp/user/nbproject/private/
-=======
-/jsp/chapter2/nbproject/private/
-/jsp/chapter2/build/
-/jsp/jspapp/nbproject/private/
-/jsp/jspdemo/nbproject/private/
-/jsp/jspdemo/dist/
-/jsp/jspdemo/build/
->>>>>>> 276bb19d50fed07da89230958d85b304d1d55288
-<<<<<<< HEAD
-/PersonProjet/target/
-=======
-/TestWeb_hibernate/nbproject/private/
-/PersonProjet/target/
-/PersonSpring/target/
->>>>>>> d65ee4d57d6110ff930417217573c333b9124a86
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/

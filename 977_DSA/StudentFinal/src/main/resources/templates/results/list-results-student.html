@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="../style.css" rel="stylesheet">
+    <title>Results</title>
+</head>
+
+
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a th:href="@{/app}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <span class="fs-4 text-success-emphasis"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="text-success" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
+                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+            </svg></span>
+            <span class="fs-4 text-success">&emsp; Gestion des inscriptions</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a th:href="@{/app}" class="nav-link text-success-emphasis">Home</a></li>
+            <li class="nav-item"><a th:href="@{/app/students}" class="nav-link text-success-emphasis">Students</a></li>
+            <li class="nav-item"><a th:href="@{/app/courses}" class="nav-link text-success-emphasis">Courses</a></li>
+            <li class="nav-item"><a th:href="@{/app/results}" class="nav-link active bg-success" aria-current="page">Results</a></li>
+        </ul>
+    </header>
+</div>
+<main >
+
+    <div class="bg-light p-5 rounded">
+
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold text-success-emphasis">Results</h1>
+            <h3 th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}" />
+        </div>
+
+        <div class="container">
+            <div class="container marketing">
+
+                <table class="table table-bordered ">
+                    <thead class="table-light ">
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Session</th>
+                <th>Mark</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="res : ${results}">
+                <td th:text="${res.getId().getCourseId()}" />
+                <td th:text="${res.getCourse().getCourse_name()}" />
+                <td th:text="${res.getId().getCourseSession()}" />
+                <td th:text="${res.mark}" />
+                <td>
+                    <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/update-result(studentId=${res.getId().studentId},
+                                            courseId=${res.getId().courseId},
+                                            session=${res.getId().getCourseSession()})}" class="nav-link">Update</a>
+                    </button> &emsp;
+                    <button class=" btn btn-outline-success"  type="button">
+                        <a th:href="@{/app/delete-result(studentId=${res.getId().studentId},
+                                            courseId=${res.getId().courseId},
+                                            session=${res.getId().getCourseSession()})}" class="nav-link">Delete</a>
+                    </button> &emsp;
+
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+            <div class="px-4 py-5 my-5 text-center">
+                <h1 class="display-5 fw-bold text-success-emphasis"></h1>
+            </div>
+        </div>
+</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
